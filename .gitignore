@@ -1,0 +1,9 @@
+/.generated
+/dist
+/node_modules
+
+
+.env*
+!.env.example
+
+database/*.sqlite3
