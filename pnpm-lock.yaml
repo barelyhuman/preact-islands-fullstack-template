@@ -11,8 +11,8 @@ specifiers:
   esbuild: ^0.17.10
   esbuild-node-externals: ^1.6.0
   express: ^4.18.2
-  kleur: ^4.1.5
   knex: ^2.4.2
+  kolorist: ^1.7.0
   nodemon: ^2.0.22
   postcss: ^8.4.21
   preact: ^10.13.0
@@ -30,7 +30,6 @@ dependencies:
   cross-env: 7.0.3
   dotenv: 16.0.3
   express: 4.18.2
-  kleur: 4.1.5
   knex: 2.4.2_sqlite3@5.1.6
   preact: 10.13.1
   preact-render-to-string: 5.2.6_preact@10.13.1
@@ -41,6 +40,7 @@ devDependencies:
   autoprefixer: 10.4.14_postcss@8.4.21
   esbuild: 0.17.14
   esbuild-node-externals: 1.6.0_esbuild@0.17.14
+  kolorist: 1.7.0
   nodemon: 2.0.22
   postcss: 8.4.21
   prettier: 2.8.7
@@ -1623,11 +1623,6 @@ packages:
     hasBin: true
     dev: false
 
-  /kleur/4.1.5:
-    resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
-    engines: {node: '>=6'}
-    dev: false
-
   /knex/2.4.2_sqlite3@5.1.6:
     resolution: {integrity: sha512-tMI1M7a+xwHhPxjbl/H9K1kHX+VncEYcvCx5K00M16bWvpYPKAZd6QrCu68PtHAdIZNQPWZn0GVhqVBEthGWCg==}
     engines: {node: '>=12'}
@@ -1674,6 +1669,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: false
+
+  /kolorist/1.7.0:
+    resolution: {integrity: sha512-ymToLHqL02udwVdbkowNpzjFd6UzozMtshPQKVi5k1EjKRqKqBrOnE9QbLEb0/pV76SAiIT13hdL8R6suc+f3g==}
+    dev: true
 
   /lilconfig/2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}

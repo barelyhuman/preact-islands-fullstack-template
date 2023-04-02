@@ -1,6 +1,6 @@
 import preactIslandPlugin from '@barelyhuman/preact-island-plugins/esbuild'
 import autoprefixer from 'autoprefixer'
-import kleur from 'kleur'
+
 import * as esbuild from 'esbuild'
 import { nodeExternalsPlugin } from 'esbuild-node-externals'
 import fs from 'fs/promises'
@@ -12,8 +12,7 @@ import glob from 'tiny-glob'
 import * as url from 'url'
 import Watcher from 'watcher'
 import nodemon from 'nodemon'
-
-const { green, dim } = kleur
+import { green, dim, stripColors } from 'kolorist'
 
 const __dirname = dirname(url.fileURLToPath(import.meta.url))
 
@@ -27,12 +26,7 @@ const dimLog = msg => log(dim(msg))
 // remove all ansi colors
 const justText = msg => {
   // taken from https://github.com/chalk/ansi-regex/blob/02fa893d619d3da85411acc8fd4e2eea0e95a9d9/index.js
-  const pattern = [
-    '[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)',
-    '(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-nq-uy=><~]))',
-  ].join('|')
-
-  return msg.replace(new RegExp(pattern, 'g'), '')
+  return stripColors(msg)
 }
 
 const log = msg => {
