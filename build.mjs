@@ -57,8 +57,6 @@ async function main(options = {}) {
   const buildSuccess = green('Done')
   await server()
   log(`${buildSuccess}: Server`)
-  await client()
-  log(`${buildSuccess}: Client`)
   await buildPostcss()
   log(`${buildSuccess}: PostCss`)
 
@@ -98,26 +96,6 @@ async function buildPostcss() {
     })
 }
 
-async function client() {
-  const entryPoints = await glob('./**/*.client.js', {
-    absolute: true,
-    cwd: './.generated',
-  })
-  esbuild.build({
-    ...commonConfig,
-    entryPoints: entryPoints,
-    minify: true,
-    write: true,
-    metafile: true,
-    splitting: true,
-    // because of this, it's right now limited to esm
-    // https://github.com/evanw/esbuild/issues/16
-    format: 'esm',
-    platform: 'browser',
-    outdir: 'dist/js',
-  })
-}
-
 async function server() {
   return esbuild.build({
     ...commonConfig,
@@ -127,9 +105,13 @@ async function server() {
     plugins: [
       nodeExternalsPlugin(),
       preactIslandPlugin({
-        clientDir: '/public/js',
+        client: {
+          output: '.islands',
+        },
+        tsconfig: './tsconfig.json',
+        baseURL: '/islands/',
         atomic,
-        cwd: url.fileURLToPath(new URL('.', import.meta.url)),
+        rootDir: '.',
       }),
     ],
     outfile: 'dist/server.js',

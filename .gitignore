@@ -7,3 +7,4 @@
 !.env.example
 
 database/*.sqlite3
+.islands

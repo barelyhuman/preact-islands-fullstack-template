@@ -23,6 +23,7 @@ app.use(cors())
 app.use(renderMiddleware)
 app.use(routes(router))
 
+app.use('/islands', express.static('./.islands', { maxAge: 60 * 60 * 1000 }))
 app.use('/public', express.static('./dist', { maxAge: 60 * 60 * 1000 }))
 
 app.listen(port, () => console.log(`listening at http://localhost:${port}`))
